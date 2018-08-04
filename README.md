@@ -5,7 +5,7 @@
 Esse repositorio contem códigos e imagens de alguns microservicos criados para facilitar tarefas de web scraping ( parsing, bot benchmarking, data extraction,data cleaning, reports, etc..).
 #
  
--  ##### *[get_info](https://github.com/g-freire/web-sraping-tools/tree/master/get_info_tool)*:  *retorna algumas informações sobre o domain , informações legais, arquitetura do sistema(stack), robot.txt, sitemap, etc..*
+-  ##### *[get_info](https://github.com/g-freire/web-scraping-tools/tree/master/get_info_tool)*:  *retorna algumas informações sobre o domain , informações legais, arquitetura do sistema(stack), robot.txt, sitemap, etc..*
 
 - ##### *[filter_local](https://github.com/g-freire/web-scraping-tools/tree/master/filter_local_tool)*: *filtra as diversas saídas do cralwer para somente URLs com o padrão desejado nos endpoints (eg. produtos, categorias...)*
 
