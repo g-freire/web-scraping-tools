@@ -54,7 +54,7 @@ if __name__ == "__main__":
     # filtro
     regex = instancia.find_pattern_product(objeto_linhas)  
     exporta = instancia.export_files(regex)    
-    # log linhas da saida minerada
+    # log linhas da saida mineirada
     objeto = Mine(CLEAN_OUTPUT, "")
     objeto_linhas = objeto.read_lines()
     contar_linhas_cleaned = objeto.count_lines(objeto_linhas)
