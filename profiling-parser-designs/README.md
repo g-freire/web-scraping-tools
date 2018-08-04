@@ -4,7 +4,7 @@
 
 This project was oriented to produce a statistical perspective of different parsers tunings. It was created to help register more empirically the parser performance.
 For the comparisons, the same main API,network and CPUs were used. Each result
-corresponds to the mean of 10 script executions results. 
+corresponds to the mean of 10 script executions managed by the scheduler
 #
 ##### eg. benchmarking algos using different (n) CPU processes / parser libs 
 # ![Screenshot](static/profiling-table.png)
