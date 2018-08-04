@@ -10,7 +10,7 @@ setup(
 
     description='Open source tools to easy web scrapping related tasks',
     long_description="",
-    url='https://github.com/B2W-BIT/asgard-api',
+    url='https://github.com/g-freire/web-scraping-tools',
     # Author details
     author='Gustavo Freire',
     author_email='gustavomfreire@gmail.com',
