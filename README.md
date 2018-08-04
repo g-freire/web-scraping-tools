@@ -14,6 +14,6 @@ Esse repositorio contem códigos e imagens de alguns microservicos criados para 
 -  #####  *[web_parser]()*: *realiza o parser em cada domain filtrado, extrai as informacoes necessarias e gera um relatorio em .csv*
 
 #
- Todas as tools foram criados utilizando-se Python 3, Bash e Docker
+ Todas os serviços foram criados utilizando-se Python3, Bash e Docker
 #
 MIT License
