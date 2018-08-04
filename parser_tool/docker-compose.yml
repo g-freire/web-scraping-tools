@@ -1,0 +1,18 @@
+version: '3'
+services:
+  model:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: parser-img
+    container_name: parser-ctn
+    volumes:
+      - reports:/app/data
+    networks:
+        - back_bone
+
+volumes:
+  reports:
+
+networks:
+  back_bone:

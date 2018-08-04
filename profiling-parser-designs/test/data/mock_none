@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <title>{}</title>
+</head>
+<body>
+
+    <p class="product_Name"></p>
+    <p class="product_Name">{}</p>
+    <p class="product_Price"></p>
+    <p class="product_Price">{}</p>
+
+</body>
+</html>
