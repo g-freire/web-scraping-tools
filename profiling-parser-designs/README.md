@@ -8,7 +8,7 @@ corresponds to the mean of 10 script executions managed by the scheduler
 #
 ##### eg. benchmarking algos using different (n) CPU processes / parser libs 
 # ![Screenshot](static/profiling-table.png)
-##### Note that this statical sampling is showing that the request+lxml libs with multiprocessing algorithm perfomed almost *14 times* faster than bs4 with single processing when dealing with 500 URL.
+##### Note that this statical sampling is showing that the request+lxml libs with multiprocessing algorithm perfomed almost *14 times* faster than bs4 with single processing when dealing with 500 URL hits
 #
 ### Steps to run:
 
