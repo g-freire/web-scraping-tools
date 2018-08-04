@@ -40,6 +40,8 @@ def output_csv(file, content):
     with open(file, 'a', encoding='utf-8-sig') as csv_report:
         writer = csv.writer(csv_report)
         writer.writerow(content)
+
+# funcao teste
 def printer(arg):
     return(arg)
 
