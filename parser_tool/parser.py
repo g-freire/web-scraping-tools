@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Desenvolvido para solucao de desafio tecnico @b2w 
 Esse script faz leitura dos links, o request e parser da pagina, extrae os
 dados atraves de seletores especificos e exporta um relatorio em csv.
 """
