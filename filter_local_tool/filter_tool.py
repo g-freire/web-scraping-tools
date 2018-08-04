@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-script para minerar os dados gerados por crawlers em .txt
+script to filter specific patterns from the crawled url endpoints
+1) Instantiates the Mine class
+2) Call methods to read and log some info
+3) Use function with standard regex lib to find an endpoint pattern
+
+script para filtrar os dados gerados por crawlers em .txt
 1) cria objeto para ler todos os links do arquivo original
 2) aplica filtro para links com padrao de url de produto
 3) exporta e mostra quantidade de links do arquivo minerado (log)
@@ -34,6 +39,8 @@ class Mine:
             arg: lista contendo todas as URLs do crawler
             return: tupla filtrada e sem entradas duplicadas
         """
+        
+        # change the endpoint regex here
         pattern = "https://www.epocacosmeticos.com.br\/.+\/[p]$"
         mined_list = [each_line for each_line in links if re.findall(pattern, each_line)]       
     
