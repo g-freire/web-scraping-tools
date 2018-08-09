@@ -1,7 +1,7 @@
 PYTHON = python3
 PIP = pip3
+# domain variable
 URL =  https://www.epocacosmeticos.com.br/
-
 
 .PHONY : all modules info container build run robot pid echo
 
@@ -27,6 +27,10 @@ run:help-docker
 robot:
 	@echo "%% getting robot.txt from "$(URL)" "
 	@curl "$(URL)"/robots.txt > robot.txt
+	
+sitemap:
+	@echo "%% getting sitemap.xml from "$(URL)" "
+	@curl "$(URL)"/sitemap.xml > sitemap.txt
 
 pid:
 	@echo "--------------------------------";
