@@ -4,7 +4,7 @@
 ### OSX 
 #
 ### Docker:
-To create and run the main container service
+To mount and run the main container service
 ```diff
 + $ make container
 ```
@@ -13,7 +13,7 @@ To install the modules
 ```diff
 + $ make modules
 ```
-To run the main algorithm 
+To run the main tool 
 ```diff
 + $ make info
 ```
@@ -28,14 +28,17 @@ To download sitemap.xml
 #
 ### Microsoft OS 
 #
-#### Docker:
-To create and run the main container service
+### Docker:
+To mount and run the main container service
 ```diff
 + $ docker build -t info .
-+ $ docker run --rm -it --name info info:latest >> info.txt
+
++ $ docker run --rm -it --name info info:latest 
 ```
-#### Local:
+### Local:
+To download the modules and run the tool 
 ```diff
 + $ pip3 install -r requirements.txt
+
 + $ python3 info.py
 ``
