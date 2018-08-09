@@ -1,14 +1,14 @@
 ## get_info
  [![Docker Build](https://img.shields.io/docker/build/pierrezemb/gostatic.svg?style=plastic)](https://hub.docker.com/r/gfreire)
 #
-### **unix like OS
+### OSX 
 #
-#### Using Docker:
+### Docker:
 To create and run the main container service
 ```diff
 + $ make container
 ```
-#### Local:
+### Local:
 To install the modules
 ```diff
 + $ make modules
@@ -21,14 +21,14 @@ To download robots.txt
 ```diff
 + $ make robot
 ```
-To download robots.txt
+To download sitemap.xml
 ```diff
-+ $ make robot
++ $ make sitemap
 ```
 #
 ### Microsoft OS 
 #
-#### Using Docker:
+#### Docker:
 To create and run the main container service
 ```diff
 + $ docker build -t info .
