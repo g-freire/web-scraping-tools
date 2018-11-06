@@ -8,14 +8,15 @@ from lxml import html
 def blueprint():
     try:
         start = time()
+        domain = ""      
+        
         print('\033[94m', '---------------------------------------------', '\033[0m')
         print('\033[1m', 'Data extraction started at: ', strftime("%d-%m-%Y %H:%M:%S"), '\033[0m')
-        print('\033[1m', 'Domain:', '\033[92m','{0}'.format(domain), '\033[0m');
+        print('\033[1m', 'Domain:', '\033[92m','{}'.format(domain), '\033[0m');
         
-        domain = ""
         data1 =  "no data"       
         data2 =  "no data"    
-
+        
         try:
             response = requests.get('{}'.format(domain), timeout=None) 
             e_tree = html.fromstring(response.text)  
