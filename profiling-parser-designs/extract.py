@@ -1,100 +1,89 @@
-"""
-Esse script contem a implementacao para duas conhecidas bibliotecas de processamento
-de html/xml. Ambas recebem os links, fazem o request e parser da pagina, extraem os
-dados atraves de seletores especificos e exportam um relatorio em csv.
-"""
-import sys
+import pandas as pd
+import pyodbc 
+from time import time, sleep
+import typing
+# cursor = connection.cursor()
+# csv_file = open('output_bulk.csv', 'w')
 
-import request
-from bs4 import BeautifulSoup
-from lxml import html
+# PYTHON POC OF A PI-SYSTEMS CLIENT CHUNK EXTRACTOR
+# cada CSV uma tag
+def extract_by_chunks(tag_name="ABC", chunk_size=3200, begin=0, end=3200):
+    start = time()
+    try:
+        while 1:
+            # adapatar para a query sytax do PI system - do atual pra tras chunksize
+            # drop_the_current_table()
+            pisystem_extraction_query = "SELECT * FROM  {}, INICIO {} TO {}".format(tag_name,begin, end)
+            
+            print(pisystem_extraction_query)
+            begin = end
+            end = end + chunk_size
+            print("Sleeping for 3 seconds")
+            sleep(3)        
+            # trazer o ultimo chunk mesmo que menor que o chunk_size
+            # implementar condicao de parada do loop
+            # maybe do a 10% on the record count as chunk decision
+            if end == 100000:
+                break
+            else:
+                pass
+            # ja está feito no VBA, funcao para ler todo o csv e escrever no formato csv
+            # df.to_csv(csv_file, header=False)
 
-from helper_functions import *
+    except Exception as e:print(e)
 
-ENTRADA_DADOS = 'data/10.txt'
-SAIDA_DADOS = 'report.csv'
+    finally:
+        # csv_file.close()
+        total_time = time() - start
+        print('Process took', total_time, ' seconds')
+        print("---------------------------------------------- ")
 
-class Lxml:
-    def __init__(self):
-        pass
+# PYTHON POC OF A PI-SYSTEMS CLIENT CHUNK EXTRACTOR --- BACKWARDS
+def extract_by_chunks_backwards(tag_name="CDE", chunk_size=3200, begin=100000):
+    start = time()
+    try:
+        while 1:
+            # adapatar para a query sytax do PI system - do atual pra tras chunksize
+            # drop_the_current_table()
+            end = begin - chunk_size
+            pisystem_extraction_query = "SELECT * FROM  {}, ULTIMO {} TO {}".format(tag_name,begin, end)
+            print(pisystem_extraction_query)
+            print("Sleeping for 3 seconds")
+            sleep(3)        
+            begin = end
+            # trazer o ultimo chunk mesmo que menor que o chunk_size
+            # implementar condicao de parada do loop
+            # maybe do a 10% on the record count as chunk decision
+            if end == 0:
+                break
+            else:
+                pass
+            # ja está feito no VBA, funcao para ler todo o csv e escrever no formato csv
+            # df.to_csv(csv_file, header=False)
+
+    except Exception as e:print(e)
+
+    finally:
+        # csv_file.close()
+        total_time = time() - start
+        print('Process took', total_time, ' seconds')
+        print("---------------------------------------------- ")
+
+
+if __name__ == '__main__':
+    print("---------------------------------------------- ")
+    print("SQLServer Chunk Extractor to CSV")
+    # print('Total records on db is',get_total_rows())
+    print("---------------------------------------------- ")
+    # extract_load_chunk(10000)
+    #implementar aqui o loop
     
-    def parse_with_lxml(self,file_links):
-        for index, each_link in enumerate(file_links,start=1):
-            response = requests.get(each_link, headers=random_headers(),timeout=15) 
-            e_tree = html.fromstring(response.text)
-        
-            coluna_precos = []
-            price = e_tree.xpath('//*[@class="skuBestPrice"]')
-            preco = self.lxml_handler(price)
-            coluna_precos.append(preco)
-
-            coluna_nome_produtos = []
-            product_name = e_tree.xpath('//*[@class="product__floating-info--name"]/h1/div')
-            nome_produto = self.lxml_handler(product_name)
-            coluna_nome_produtos.append(nome_produto)
-
-            coluna_titulos = []
-            title = e_tree.xpath('head/title')
-            titulo = self.lxml_handler(title)
-            coluna_titulos.append(titulo)
-
-            output_csv(SAIDA_DADOS,[index,coluna_precos,coluna_nome_produtos,each_link,coluna_titulos])
-        
-        return(coluna_precos,coluna_nome_produtos,coluna_titulos,each_link)
+    # extract_by_chunks()
+    extract_by_chunks_backwards()
     
-    def lxml_handler(self,selector):
-        if len(selector) < 1:
-            return ("Sem dados")
-        else: 
-            return (selector[0].text)
-
-class Bs4:
-    def __init__(self):
-        pass
-    
-    def parse_with_bs4(self,file_links):
-        for index, each_link in enumerate(file_links,start=1):
-            response = requests.get(each_link, headers=random_headers(),timeout=15) 
-            soup = BeautifulSoup(response.text, "html5lib")
-    
-            coluna_precos = []
-            price = soup.find('', class_="skuBestPrice")
-            preco = self.bs4_handler(price)
-            coluna_precos.append(preco)
-
-            coluna_nome_produtos = []
-            product_name = soup.find('',class_="product__floating-info--name")
-            nome_produto = self.bs4_handler(product_name)
-            coluna_nome_produtos.append(nome_produto)
-
-            coluna_titulos = []
-            title = soup.find('title')
-            titulo = self.bs4_handler(title)
-            coluna_titulos.append(titulo)
-
-            output_csv(SAIDA_DADOS,[index,coluna_precos,coluna_nome_produtos,each_link])
-        
-        return(coluna_precos,coluna_nome_produtos,coluna_titulos,each_link)
-    
-    def bs4_handler(self,selector):
-        if selector is None:
-            return ("Sem dados")
-        else:
-            return(selector.get_text()) 
-
-if __name__ == "__main__":
-    links = read_lines(ENTRADA_DADOS)
-    if len(sys.argv) < 2:
-        print("Usage: python3 extract-parallel.py [parser_module]")
-    else:
-        cmd = sys.argv[1]
-        if cmd == "lxml":
-            lxml_instance = Lxml()
-            report = lxml_instance.parse_with_lxml(links)
-        elif cmd == "bs4":
-            bs4_instance = Bs4()
-            report = bs4_instance.parse_with_bs4(links)
-        else:
-            print("Usage: python3 extract-parallel.py [parser_module]")
+    # multiples tag loop
+    # tag_list = ["ABC","CDE","EFG","HIJ","LMN","OPQ"]
+    # for _ in tag_list:
+    #     extract_by_chunks(tag_name=tag_list[_])
 
 
